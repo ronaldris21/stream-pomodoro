@@ -1,9 +1,9 @@
 const urlParams = new URLSearchParams(window.location.search);
 
 const lengths = {
-  pomodoro: (Number(urlParams.get("pomodoro")) || 0.2) * 60,
-  shortBreak: (Number(urlParams.get("shortBreak")) || 0.1) * 60,
-  longBreak: (Number(urlParams.get("longBreak")) || 0.2) * 60,
+  pomodoro: (Number(urlParams.get("pomodoro")) || 50) * 60,
+  shortBreak: (Number(urlParams.get("shortBreak")) || 10) * 60,
+  longBreak: (Number(urlParams.get("longBreak")) || 20) * 60,
 };
 
 const breakSound = new Audio("sounds/break.mp3");
@@ -103,6 +103,9 @@ function updateClock() {
       breakSound.play();
       breakSound.play();
       counterPomodoros++;
+
+      
+
       document.getElementById("sessions").textContent = "Sessions: "+ counterPomodoros;
 
       if (counterPomodoros % cantPomodorosLongBreak === 0) {
@@ -157,7 +160,4 @@ console.log(lengths);
 console.log(length);
 if (lengths.pomodoro && lengths.longBreak && lengths.shortBreak) {
   setMode("pomodoro");
-  runTimer();
 }
-
-// startTimer();
